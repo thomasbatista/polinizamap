@@ -1,0 +1,1 @@
+ALTER TABLE regioes ALTER COLUMN estado TYPE VARCHAR(2);
