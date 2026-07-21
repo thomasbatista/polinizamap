@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: polinizamap-db
+    environment:
+      POSTGRES_DB: polinizamap
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - polinizamap_data:/var/lib/postgresql/data
+
+volumes:
+  polinizamap_data:
