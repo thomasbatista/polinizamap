@@ -1,8 +1,8 @@
-# 🐝 PolinizaMap
+# PolinizaMap
 
-API REST de monitoramento colaborativo de fauna local, onde cidadãos registam avistamentos de animais polinizadores (abelhas, borboletas, beija-flores). Pesquisadores e admins podem consultar e validar os dados.
+REST API for collaborative monitoring of local pollinator fauna, where citizens register sightings of pollinating animals (bees, butterflies, hummingbirds). Researchers and admins can review and validate the data.
 
-## Tecnologias
+## Technologies
 
 - Java 17 + Spring Boot 3.5.3
 - Spring Security + JWT
@@ -11,41 +11,38 @@ API REST de monitoramento colaborativo de fauna local, onde cidadãos registam a
 - SpringDoc OpenAPI (Swagger UI)
 - Docker
 
-## Como rodar
+## How to run
 
 ```bash
-# Sobe o banco
+# Start the database
 docker compose up -d
 
-# Roda a aplicação
+# Run the application
 ./mvnw spring-boot:run
 ```
 
-Swagger disponível em: `http://localhost:8080/swagger-ui.html`
+Swagger available at: `http://localhost:8080/swagger-ui.html`
 
-## Autenticação
+## Authentication
 
-A API usa JWT. Após registar e fazer login, enviar o token no header:
-
-```
+The API uses JWT. After registering and logging in, send the token in the header:
 Authorization: Bearer <token>
-```
 
 ## Roles
 
-| Role | Permissões |
-|---|---|
-| `CIDADAO` | Registar e ver próprios avistamentos |
-| `PESQUISADOR` | Ver e validar todos os avistamentos |
-| `ADMIN` | Acesso total + gerir espécies e regiões |
+| Role | Permissions |
+|------|-------------|
+| CIDADAO | Register and view own sightings |
+| PESQUISADOR | View and validate all sightings |
+| ADMIN | Full access + manage species and regions |
 
-## Endpoints principais
+## Main endpoints
 
-| Método | Endpoint | Descrição |
-|---|---|---|
-| `POST` | `/auth/register` | Cadastrar usuário |
-| `POST` | `/auth/login` | Login |
-| `GET/POST` | `/especies` | Listar e criar espécies |
-| `GET/POST` | `/regioes` | Listar e criar regiões |
-| `GET/POST` | `/avistamentos` | Listar e registar avistamentos |
-| `PATCH` | `/avistamentos/{id}/validar` | Validar avistamento |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/auth/register` | Register user |
+| POST | `/auth/login` | Login |
+| GET/POST | `/especies` | List and create species |
+| GET/POST | `/regioes` | List and create regions |
+| GET/POST | `/avistamentos` | List and register sightings |
+| PATCH | `/avistamentos/{id}/validar` | Validate sighting |
