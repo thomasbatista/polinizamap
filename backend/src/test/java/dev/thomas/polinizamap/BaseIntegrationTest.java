@@ -74,6 +74,6 @@ public abstract class BaseIntegrationTest {
                 List.of(new SimpleGrantedAuthority("ROLE_" + role.name()))
         );
 
-        return tokenProvider.getToken(auth);
+        return tokenProvider.getToken(auth, role);
     }
 }

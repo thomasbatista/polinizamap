@@ -1,5 +1,6 @@
 package dev.thomas.polinizamap.config;
 
+import dev.thomas.polinizamap.enums.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -19,19 +20,20 @@ public class TokenProvider {
     @Value("${jwt.key}")
     private String key;
 
-    public String getToken(Authentication authentication) {
+    public String getToken(Authentication authentication, Role role) {
         if (authentication == null) {
             throw new IllegalArgumentException("Authentication cannot be null");
         }
-        return buildToken(authentication.getName());
+        return buildToken(authentication.getName(), role);
     }
 
-    private String buildToken(String username) {
+    private String buildToken(String username, Role role) {
         Date now = new Date();
         Date expiration = new Date(now.getTime() + expirationTime);
 
         return Jwts.builder()
                 .subject(username)
+                .claim("role", role.name())
                 .issuedAt(now)
                 .expiration(expiration)
                 .signWith(getSigningKey())

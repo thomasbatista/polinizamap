@@ -5,6 +5,7 @@ import dev.thomas.polinizamap.dto.auth.AuthResponse;
 import dev.thomas.polinizamap.dto.auth.LoginRequest;
 import dev.thomas.polinizamap.dto.auth.RegisterRequest;
 import dev.thomas.polinizamap.entity.Usuario;
+import dev.thomas.polinizamap.exception.NotFoundException;
 import dev.thomas.polinizamap.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,7 +41,7 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(request.email(), request.senha())
         );
 
-        return new AuthResponse(tokenProvider.getToken(authentication));
+        return new AuthResponse(tokenProvider.getToken(authentication, usuario.getRole()));
     }
 
     public AuthResponse login(LoginRequest request) {
@@ -48,6 +49,9 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(request.email(), request.senha())
         );
 
-        return new AuthResponse(tokenProvider.getToken(authentication));
+        Usuario usuario = usuarioRepository.findByEmail(request.email())
+                .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+
+        return new AuthResponse(tokenProvider.getToken(authentication, usuario.getRole()));
     }
 }
