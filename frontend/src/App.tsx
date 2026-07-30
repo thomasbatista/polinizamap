@@ -7,6 +7,7 @@ import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { MapaPage } from './pages/MapaPage'
 import { NovoAvistamentoPage } from './pages/NovoAvistamentoPage'
+import { ValidacaoPage } from './pages/ValidacaoPage'
 
 export function App() {
   return (
@@ -20,6 +21,12 @@ export function App() {
           <Route element={<Layout />}>
             <Route path="/mapa" element={<MapaPage />} />
             <Route path="/avistamentos/novo" element={<NovoAvistamentoPage />} />
+          </Route>
+        </Route>
+
+        <Route element={<PrivateRoute allowedRoles={['PESQUISADOR', 'ADMIN']} />}>
+          <Route element={<Layout />}>
+            <Route path="/validacao" element={<ValidacaoPage />} />
           </Route>
         </Route>
 

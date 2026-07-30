@@ -7,7 +7,7 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   }`
 
 export function Layout() {
-  const { userEmail, logout } = useAuth()
+  const { userEmail, userRole, logout } = useAuth()
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
@@ -21,6 +21,11 @@ export function Layout() {
             <NavLink to="/avistamentos/novo" className={navLinkClass}>
               Novo Avistamento
             </NavLink>
+            {(userRole === 'PESQUISADOR' || userRole === 'ADMIN') && (
+              <NavLink to="/validacao" className={navLinkClass}>
+                Validação
+              </NavLink>
+            )}
           </nav>
         </div>
         <div className="flex items-center gap-4">
