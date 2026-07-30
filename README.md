@@ -119,7 +119,7 @@ cd frontend && npm run test
 
 CI (GitHub Actions) runs both suites plus a production build on every push/PR to `main` — see [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 
-## Not included yet
+## Known limitations
 
-- Refresh tokens / social login
-- React Router has a known moderate CVE only fixable by a v6→v7 major upgrade, deliberately deferred
+- **Refresh tokens / social login**: out of scope by design. JWTs expire after 24h, so users just log in again — acceptable for this project's scope.
+- **`react-router-dom` moderate CVEs**: fixable only by a v6→v7 major upgrade. Reviewed both advisories — the open-redirect one needs attacker-controlled input feeding a `<Link>`/`useNavigate` target, which doesn't happen here (all routes are static); the other only affects SSR hydration, and this app is a client-only SPA with no SSR. Deferred as a standalone follow-up rather than rushed before deploy.
