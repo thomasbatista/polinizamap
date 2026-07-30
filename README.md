@@ -4,6 +4,12 @@
 
 REST API and web frontend for collaborative monitoring of local pollinator fauna, where citizens register sightings of pollinating animals (bees, butterflies, hummingbirds). Researchers and admins can review and validate the data.
 
+## Live demo
+
+**[polinizamap.vercel.app](https://polinizamap.vercel.app)** — frontend on Vercel, API on Render, database on Supabase.
+
+Log in with one of the [demo accounts](#demo-accounts) below, no registration needed. The backend is on Render's free tier, so it spins down after inactivity — the first request after a while may take 30-60s to wake up.
+
 ## Technologies
 
 **Backend**
@@ -23,6 +29,11 @@ REST API and web frontend for collaborative monitoring of local pollinator fauna
 - Axios
 - React Leaflet (interactive map with OpenStreetMap)
 - Vitest + Testing Library
+
+**Hosting**
+- Vercel (frontend)
+- Render (backend, via Docker)
+- Supabase (PostgreSQL)
 
 ## Project structure
 
