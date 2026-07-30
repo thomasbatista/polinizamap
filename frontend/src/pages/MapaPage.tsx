@@ -2,21 +2,9 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import '../lib/leafletIcons'
 import { useAvistamentos } from '../hooks/useAvistamentos'
 import { Spinner } from '../components/Spinner'
-import type { StatusAvistamento } from '../types/avistamento'
+import { LABEL_STATUS, COR_STATUS } from '../lib/statusAvistamento'
 
 const CENTRO_PADRAO: [number, number] = [-14.235, -51.9253]
-
-const LABEL_STATUS: Record<StatusAvistamento, string> = {
-  PENDENTE: 'Pendente',
-  APROVADO: 'Aprovado',
-  REJEITADO: 'Rejeitado',
-}
-
-const COR_STATUS: Record<StatusAvistamento, string> = {
-  PENDENTE: 'text-amber-600',
-  APROVADO: 'text-emerald-600',
-  REJEITADO: 'text-red-600',
-}
 
 function formatarData(dataHora: string): string {
   return new Date(dataHora).toLocaleString('pt-BR')
