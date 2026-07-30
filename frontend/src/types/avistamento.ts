@@ -22,3 +22,8 @@ export interface AvistamentoResponse {
   status: StatusAvistamento
   notaValidacao: string | null
 }
+
+export interface ValidacaoRequest {
+  status: StatusAvistamento
+  notaValidacao?: string | null
+}
