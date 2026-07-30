@@ -6,6 +6,7 @@ import dev.thomas.polinizamap.entity.Usuario;
 import dev.thomas.polinizamap.enums.Role;
 import dev.thomas.polinizamap.repository.AvistamentoRepository;
 import dev.thomas.polinizamap.repository.EspecieRepository;
+import dev.thomas.polinizamap.repository.RegiaoRepository;
 import dev.thomas.polinizamap.repository.UsuarioRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,9 @@ public abstract class BaseIntegrationTest {
     protected AvistamentoRepository avistamentoRepository;
 
     @Autowired
+    protected RegiaoRepository regiaoRepository;
+
+    @Autowired
     protected PasswordEncoder passwordEncoder;
 
     protected String tokenAdmin;
@@ -53,6 +57,7 @@ public abstract class BaseIntegrationTest {
     void setupUsuarios() {
         avistamentoRepository.deleteAllInBatch();
         especieRepository.deleteAllInBatch();
+        regiaoRepository.deleteAllInBatch();
         usuarioRepository.deleteAllInBatch();
 
         tokenAdmin = criarTokenParaUsuario("admin@test.com", Role.ADMIN);
